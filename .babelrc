@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage", //polyfill会自动引入proyfill库文件
+        "targets": {
+          "chrome": "67" //支持chrome67以上版本，是否有必要的es6=> es5
+        }
+      },
+      "@babel/preset-react" //react语法编译
+    ]
+  ] //包含所有es6 => es5的规则
+}
