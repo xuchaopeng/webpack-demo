@@ -50,7 +50,18 @@
   babel-loader webpack通过babel-loader与babel建立桥梁，并不会翻译es6 => es5   
   @babel/core 它是babel的核心库 抽象语法树，转化成新的语法
   @babel/preset-env
+
   @babel/polyfill 低版本浏览器，缺失的对象。如：promise的实现，map方法的实现，加入到打包文件中。import '@babel/proyfill'；全局注入的方式，如果是组件库的时候，需注意。
+
+  组件库代码: 会以闭包的形式注入
+  optinos: {
+    "plugins" : [["@babel/plugin-transform-runtime",{
+      "corejs":2,
+      "helpers":true,
+      "regenerator":true,
+      "useESModules":true
+    }]]
+  }
  
   cnpm i -D react react-dom
   cnpm i -D @babel/preset-react
