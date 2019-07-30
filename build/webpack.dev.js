@@ -8,7 +8,7 @@ const devConfig = {
   devServer: {
     contentBase: './dist', //指定根目录
     open: true, //自动打开浏览器，访问地址
-    port: 8080,
+    port: 8090,
     hot: true
   },
   optimization: {

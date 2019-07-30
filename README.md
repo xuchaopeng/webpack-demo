@@ -79,3 +79,14 @@
       usedExports: true
     }
   }
+
+- 12. code splitting 其本身与wenpack无关
+  //webpack中实现代码分割，两种方式同步分割 异步分割
+  1. 同步代码，只需webpack.common.js中做optimization配置即可
+  optimization: {
+    splitChunks: {
+      chunks: 'all' //代码分隔 code splitting
+    }
+  }
+  2. 异步代码(import) ：无需做任何配置，会自动进行代码分割，放置带新的文件中；
+     实现import异步，安装babel-plugin-dynamic-import-webpack，并借助babel配置plugins：["dynamic-import-webpack"]

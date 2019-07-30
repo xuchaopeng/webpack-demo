@@ -3,13 +3,14 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry", //polyfill会自动引入proyfill库文件 usage
+        "useBuiltIns": "usage",
         "targets": {
-          "chrome": "67" //支持chrome67以上版本，是否有必要的es6=> es5
+          "chrome": "58",
+          "ie": "9"
         }
       },
-      "@babel/preset-react" //react语法编译
+      "@babel/preset-react"
     ]
-  ], //包含所有es6 => es5的规则
-  "plugins": ["core-js@2.6.9"]
+  ],
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]
 }

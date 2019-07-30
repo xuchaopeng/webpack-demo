@@ -58,12 +58,32 @@ module.exports = {
   },
   output: {
     publicPath: '/', //公共路径
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../dist')
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all', //代码分隔 all 同异步分割  async异步分割 iniial同步分割
+      minSize: 30000,//分割的最小文件尺寸
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: 30,
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          filename:'vendors.js' //从node_modules中引入的代码,打包到这个文件中
+        },
+        default: false
+      }
+    }
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: 'src/index.html'
+      template: './src/index.html'
     }),
     new CleanWebpackPlugin()
   ]
