@@ -8,7 +8,7 @@
   url-loader  将图片文件打包到js中 小尺寸 ,相对file-loader，多一个limit参数
   css-loader  打包css内容
   style-loader将得到的css内容挂载style标签到页面
-  sass-loader 
+  sass-loader
   postcss-loader 使用postcss.config.js,引用了autoprefixer插件，必须设置支持的浏览器才会自动添加添加浏览器兼容。
 
 - 4. plugins
@@ -42,12 +42,12 @@
   public: 'myapp.test:80',
   hot:true, //热更新，改动的文件才刷新  结合webpack.HotModuleReplacementPlugin插件使用
   hotOnly:true  //即使hml出异常，也不刷新页面，配合hot使用
-  
+
 - 9. webpack-dev-middleware
   nodejs使用webpack 官网
 
 - 10. babel
-  babel-loader webpack通过babel-loader与babel建立桥梁，并不会翻译es6 => es5   
+  babel-loader webpack通过babel-loader与babel建立桥梁，并不会翻译es6 => es5
   @babel/core 它是babel的核心库 抽象语法树，转化成新的语法
   @babel/preset-env
 
@@ -62,12 +62,12 @@
       "useESModules":true
     }]]
   }
- 
+
   cnpm i -D react react-dom
   cnpm i -D @babel/preset-react
   @babel/preset-react 打包react代码
 
-- 11. tree shaking 
+- 11. tree shaking
   注意，只支持静态模式的引入，不支持动态模式引入
   支持es6, 不支持commonjs
   package.json => {
@@ -76,7 +76,6 @@
   }
   webpack.config.js => {
     optimization: {
-      usedExports: true  
+      usedExports: true
     }
   }
-  
