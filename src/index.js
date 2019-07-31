@@ -1,15 +1,32 @@
-import _ from 'lodash';
-var element = document.createElement('div');
-element.innerHTML = _.join(['a', 'b', 'c'], '***');
-document.body.appendChild(element)
+import './index.css'
+import './style1.css'
+// document.addEventListener('click',() => {
+//     import(/* webpackPrefetch: true */'./click.js').then(({default:func}) => {
+//         func();
+//     })
+// })
+
+
+
+// import _ from 'loadsh';
+// var element = document.createElement('div');
+// element.innerHTML = _.join(['a', 'b', 'c'], '***');
+// document.body.appendChild(element)
+
 
 // function getComponent() {
-//   return import(/* webpackChunkName:"xcp" */'lodash').then(({ default: _ }) => {
+//   return import(/* webpackChunkName:"loadsh" */ 'loadsh').then(({ default: _ }) => {
 //       var element = document.createElement('div');
 //       element.innerHTML = _.join(['a', 'b', 'c'], '***');
 //       return element;
 //   });
 // }
+
+// document.addEventListener('click',() => {
+//     getComponent().then(element => {
+//         document.body.appendChild(element)
+//     })
+// })
 
 // getComponent().then(element => {
 //     document.body.appendChild(element)

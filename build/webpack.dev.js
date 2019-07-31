@@ -9,10 +9,30 @@ const devConfig = {
     contentBase: './dist', //指定根目录
     open: true, //自动打开浏览器，访问地址
     port: 8090,
-    hot: true
+    hot: true,
+    host:'xcp.com'
   },
-  optimization: {
-    usedExports: true
+  module:{
+    rules:[
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2, //文件里面嵌套文件，依然走前前两个loader
+              modules: true //开启css的模块化打包
+            }
+          },
+          'postcss-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: ['css-loader', 'postcss-loader']
+      }
+    ]
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };

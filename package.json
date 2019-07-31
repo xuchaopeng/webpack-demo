@@ -1,10 +1,12 @@
 {
   "name": "webpack-demo",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev-build": "webpack --config build/webpack.dev.js",
+    "dev-build": "webpack --profile --json > stats.json --config build/webpack.dev.js",
     "dev": "webpack-dev-server --config build/webpack.dev.js",
     "build": "webpack --config build/webpack.pro.js"
   },
@@ -24,7 +26,9 @@
     "file-loader": "^4.1.0",
     "html-webpack-plugin": "^3.2.0",
     "loadsh": "0.0.4",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

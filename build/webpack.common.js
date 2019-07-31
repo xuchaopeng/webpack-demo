@@ -25,25 +25,6 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2, //文件里面嵌套文件，依然走前前两个loader
-              modules: true //开启css的模块化打包
-            }
-          },
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
         test: /\.(eot|ttf|svg|woff)$/,
         use: {
           loader: 'file-loader',
@@ -58,14 +39,17 @@ module.exports = {
   },
   output: {
     publicPath: '/', //公共路径
+    filename: '[name].js', //入口文件占位名称
+    chunkFilename: '[name].chunk.js', //间接文件占位名称
     path: path.resolve(__dirname, '../dist')
   },
   optimization: {
+    usedExports: true, //tree shaking
     splitChunks: {
       chunks: 'all', //代码分隔 all 同异步分割  async异步分割 iniial同步分割
       minSize: 30000,//分割的最小文件尺寸
       maxSize: 0,
-      minChunks: 1,
+      minChunks: 1, //打包生成的模块，至少1个用到过才打包分割处理
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '~',
@@ -74,8 +58,8 @@ module.exports = {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          filename:'vendors.js' //从node_modules中引入的代码,打包到这个文件中
+          priority: -10
+          //filename:'vendors.js' //从node_modules中引入的代码,打包到这个文件中
         },
         default: false
       }

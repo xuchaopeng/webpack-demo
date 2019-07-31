@@ -5,3 +5,4 @@ export const add = (a,b) => {
 export const mus = (a,b) => {
     console.log(a - b)
 }
+

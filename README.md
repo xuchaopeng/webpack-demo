@@ -85,8 +85,25 @@
   1. 同步代码，只需webpack.common.js中做optimization配置即可
   optimization: {
     splitChunks: {
-      chunks: 'all' //代码分隔 code splitting
+      chunks: 'all' //代码分隔 code splitting  webpack默认只对异步代码分割 async
     }
   }
   2. 异步代码(import) ：无需做任何配置，会自动进行代码分割，放置带新的文件中；
      实现import异步，安装babel-plugin-dynamic-import-webpack，并借助babel配置plugins：["dynamic-import-webpack"]
+
+  3. 文件利用率越高，网站性能越高  所以webpack默认异步打包分割
+      如果网站能充分利用空闲时间，去做异步代码的加载，这样性能有质的提升
+      import(/* webpackPrefetch: true */'./click.js').then() webpackPrefet: 会等待核心文件加载之后，空闲再去加载
+      webpackLoad: 会和主文件一起去加载的
+    一般最优webpackPrefet  注意，某些浏览器兼容问题
+  4、多页面 通过使用import异步加载模块实现 懒加载lazyloading
+
+    **SplitChunksPlugin在vendors下加入filename报错
+
+- 13. webpack打包分析
+  https://github.com/webpack/analyse
+  webpack --profile --json > stats.json 生成的json文件，在翻墙环境下,访问（http://webpack.github.io/analyse/），里面有关这次打包的依赖关系。
+  有关webpack的其它分析工具，像Bundle Analysis等.
+
+- 14. mini-css-extract-plugin css打包
+  抽出css成 单个文件, 分入口打包
