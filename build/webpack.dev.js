@@ -34,6 +34,10 @@ const devConfig = {
       }
     ]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  output:{
+    filename: '[name].js', //入口文件占位名称
+    chunkFilename: '[name].js', //间接文件占位名称
+  }
 };
 module.exports = merge(commonConfig, devConfig);

@@ -107,3 +107,11 @@
 
 - 14. mini-css-extract-plugin css打包
   抽出css成 单个文件, 分入口打包
+
+- 15. shimmimg
+   new webpack.ProvidePlugin({
+    $ : 'jquery'   //webpack提供的垫片, 全局的变量
+    _join:['loadsh','join']
+  })
+
+  可以去官网的guides

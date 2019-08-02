@@ -41,6 +41,10 @@ const proConfig = {
       filename:'[name].css',
       chunkFilename:'[id].css'
     })
-  ]
+  ],
+  output:{
+    filename: '[name].[contenthash].js', //入口文件占位名称
+    chunkFilename: '[name].[contenthash].js', //间接文件占位名称
+  }
 };
 module.exports = merge(commonConfig, proConfig);
