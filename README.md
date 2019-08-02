@@ -115,3 +115,7 @@
   })
 
   可以去官网的guides
+- 16. 全局变量
+  webpack --env.production --config ./build/webpack.common.js
+  env.production = true
+  webpack --env production --config ./build/webpack.common.js
