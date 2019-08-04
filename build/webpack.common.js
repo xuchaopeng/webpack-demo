@@ -37,19 +37,19 @@ module.exports = {
       }
     ]
   },
-  performance:false, //打包文件过大，不提示警告
+  performance: false, //打包文件过大，不提示警告
   output: {
     publicPath: '/', //公共路径
     path: path.resolve(__dirname, '../dist')
   },
   optimization: {
-    runtimeChunk:{
-      name:'runtime'
-    },  //webpack4以下的版本 ， 需要配置这个，防止代码没改，版本号依然会改变. 业务逻辑与库文件有关联 mainfest 嵌套在各个文件中，每次打包这个可能会变化，这样就导致每次打包会变化。 不过新版w4不需要这个配置
+    runtimeChunk: {
+      name: 'runtime'
+    }, //webpack4以下的版本 ， 需要配置这个，防止代码没改，版本号依然会改变. 业务逻辑与库文件有关联 mainfest 嵌套在各个文件中，每次打包这个可能会变化，这样就导致每次打包会变化。 不过新版w4不需要这个配置
     usedExports: true, //tree shaking
     splitChunks: {
       chunks: 'all', //代码分隔 all 同异步分割  async异步分割 iniial同步分割
-      minSize: 30000,//分割的最小文件尺寸
+      minSize: 30000, //分割的最小文件尺寸
       maxSize: 0,
       minChunks: 1, //打包生成的模块，至少1个用到过才打包分割处理
       maxAsyncRequests: 5,

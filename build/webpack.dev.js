@@ -9,11 +9,11 @@ const devConfig = {
     contentBase: './dist', //指定根目录
     open: true, //自动打开浏览器，访问地址
     port: 8090,
-    hot: true,
-    host:'xcp.com'
+    hot: true
+    // host:'xcp.com'
   },
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
         test: /\.scss$/,
         use: [
@@ -35,9 +35,9 @@ const devConfig = {
     ]
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
-  output:{
+  output: {
     filename: '[name].js', //入口文件占位名称
-    chunkFilename: '[name].js', //间接文件占位名称
+    chunkFilename: '[name].js' //间接文件占位名称
   }
 };
 module.exports = merge(commonConfig, devConfig);
