@@ -121,7 +121,7 @@
   webpack --env production --config ./build/webpack.common.js
 
 - 17. 开发库
-   webpack.config.js => 
+   webpack.config.js =>
    output: {
      path:path.resolve(__dirname,'dist'),
      filename:'library.js',
@@ -129,8 +129,8 @@
      libraryTarget:'umd' //支持esModule require 等方式  global this window
    }
    externals: 'lodash' //库文件打包过程，忽略lodash的打包，可以通过引入的业务代码来引入
-   17-2 
-   上传npm 
+   17-2
+   上传npm
    package.json => {
      "name": "library-xcp-2019" , //名字不能相同
      "main" : "./dist/library.js" //定义入口文件
@@ -142,7 +142,7 @@
 
 - 18. PWA
   服务器崩掉，浏览器缓存支持访问
-  18-1. 在webpack.pro.js => 
+  18-1. 在webpack.pro.js =>
     cosnt WorkboxPlugin = require("workbox-webpack-plugin");
 
     {
@@ -163,9 +163,9 @@
                console.log('service-worker registed error')
             })
        })
-    } 
+    }
 
-  18.3 PWA 真正使用到，这因该是入门基础 随时在文件下(./dist)，启动服务器 http-server 
+  18.3 PWA 真正使用到，这因该是入门基础 随时在文件下(./dist)，启动服务器 http-server
 
 - 19. typescript
   webpack.config.js => {
@@ -194,10 +194,10 @@
 
 }
 
-- 21. eslint-loader 
+- 21. eslint-loader
   21-1.
   webpack官网上有关exlint-loader的配置
-  第一步，npm install --save-dev eslint eslint-loader 
+  第一步，npm install --save-dev eslint eslint-loader
   第二步：
   通过在devServer增加配置参数 {
     overlay: true //可以显性在浏览器看到错误
@@ -221,7 +221,7 @@
 
   21-2.
   npm install eslint --save-dev
-  npx eslint --init //快速搭建配置规范 
+  npx eslint --init //快速搭建配置规范
     .eslintrc.js  => {
       "extends" : "aribnb", //使用的aribnb的规范
       "parser": "babel-eslint" //配置解析器
@@ -234,9 +234,9 @@
     npm install babel-eslint --save-dev  //常用的eslint解析器
 
     npx eslint src //解析出代码不规范的地方
-  
+
   使用vscode编辑器，安装eslint插件, 在编辑器中来显性的提示错误的地方
-  
+
 - 22. webpack性能优化
   1 plugin插件合理使用，尽可能使用官方推荐，社区推荐的插件
   2 尽可能loader缩小文件打包检测范围，exclude include
@@ -249,10 +249,10 @@
          child : path.resolve(__dirname,'../src/a/b/c/child')  //文件引入的别名
       }
     }
-  } 
+  }
   尽可能合理的配置 resolve
   5 第三方模块只打包一次
-   
+
    1. 另开命令 webpack.dll.js 只用来打包第三方库文件, 暴露全局方法
    {
      mode:'production',
@@ -268,7 +268,7 @@
      }
    }
    npm run build:dll
-  
+
    2. add-asset-html-webpack-plugin 往hwp插件上增加静态资源的作用
     这里以上面的lodash为列：
     const AddAssetHtmlWebpackPlugin = require('...');
@@ -284,13 +284,13 @@
 
   3. fs = require('fs')
     可以详情见文档
-    
+
   6 thread-loader parallel-webpack happypack 多进程打包
-    sourcemap 
+    sourcemap
     结合stats分析打包结果
     开发环境内存编译  内存的读取，肯定比文件读取快的多
     开发环境无用插件剔除
-  
+
 - 23. 多页面打包
   const HtmlWebpackPlugin = require('html-webpack-plugin')
   webpack.config.js => {
@@ -312,5 +312,16 @@
     ]
   }
   多页面打包，无非就是配置多个HtmlWebpackPlugin
-    
+
+- 24.自己写一个plugin loader
+  开启node的调试
+  debug : "node --inspect --inspect-brk node_modules/webpack/bin/webpack.js"
+
+  --inspect 第一个参数，指开启node的调试工具
+  --inspect-brk 第二个参数, 第一行打个断点
+
+- 25.手写Bundler源码编写(模块分析部分)
+  npm install --save @babel/parser highlight
+  ast 抽象语法树
+  .... 需要手写实践，力争能自己构建一个类webpack的esModule模块化打包工具
 
